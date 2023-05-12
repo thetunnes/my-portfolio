@@ -2,26 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  height: 100vh;
+  color: #1E1E1E;
+  background: #fbfbfb;
+  border-color: #1E1E1E;
+}
+
+.dark,
+.dark body {
+  color: #fbfbfb;
+  border-color: #fbfbfb;
+  background: #1E1E1E;
+}
+
+h2.animateTitle {
+  color: #1E1E1E;
+  background: linear-gradient(to left, #1E1E1E 0, #4ade80 10%, #1E1E1E 20%);
+  padding: 0 1.5rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .animateTitle {
+  color: #fbfbfb;
+  background: linear-gradient(to left, #fbfbfb 0, #4ade80 10%, #fbfbfb 20%);
+  padding: 0 1.5rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
