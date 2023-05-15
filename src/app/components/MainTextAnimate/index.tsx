@@ -19,18 +19,21 @@ export function MainText() {
       i++;
       setFinalText(wordFinal.substring(0, i));
       if (i >= wordFinal.length) return clearInterval(intervalo);
-    }, 400);
+    }, 200);
   }
 
   function renderLetterText(wordToSplit: string) {
     if (!wordToSplit) {
       return renderThisText();
     }
+    if (finalText.length) {
+      return
+    }
+
     posWord++;
     let i = 0;
     const intervalo: NodeJS.Timer = setInterval(() => {
       i++;
-      console.log(wordToSplit);
       setText(wordToSplit.substring(0, i));
       if (posWord > words.length) return clearInterval(intervalo);
 
@@ -38,7 +41,7 @@ export function MainText() {
         clearInterval(intervalo);
         return renderLetterText(words[posWord]);
       }
-    }, 400);
+    }, 200);
   }
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export function MainText() {
       ) : ( 
         <p className="flex flex-col items-start text-4xl leading-loose font-mono font-semibold antialised tracking-wide">
           The Tunnes is a{" "}
-          <span className="text-5xl underline underline-offset-8 decoration-indigo-500 relative after:content-[ ] after:w-[2px] after:ml-2 after:animate-pipeAnimate after:bg-slate-950 after:dark:bg-slate-100 after:absolute after:top-0 after:bottom-0 after:right-0">
+          <span className="w-max text-5xl text-shadow shadow-indigo-500 underline underline-offset-8 decoration-indigo-500 relative  after:content-[ ] after:w-[2px] after:ml-2 after:animate-pipeAnimate after:bg-slate-950 after:dark:bg-slate-100 after:absolute after:top-0 after:bottom-0 after:right-0">
             {text}
           </span>
         </p>
