@@ -13,7 +13,7 @@ export default function Home() {
       <div className="w-2/5 tall:w-full h-full flex flex-col justify-center gap-4">
         <MainText />
         <p className="text-lg text-justify">
-          Olá para todo mundo, eu me chamo Cauê, tenho 22 anos e a alguns anos
+          Olá mundo! Eu me chamo Cauê, tenho 22 anos e a alguns anos
           me aventuro no mundo da programação. No mundo da internet também serei
           muito encontrado como “The Tunnes”, nasci e cresci em Volta Redonda -
           RJ e a uns 3 anos comecei meus estudos relacionado a Programação e
