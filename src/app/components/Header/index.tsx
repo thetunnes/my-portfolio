@@ -14,7 +14,7 @@ export function Header() {
   }
 
   return (
-    <header className="h-20 relative flex items-center justify-between gap-5 py-6 mx-6 border-b border-zinc-800 dark:border-gray-200">
+    <header className="h-20 backdrop-blur fixed top-0 bottom-0 left-0 right-0 flex items-center justify-between gap-5 py-6 mx-6 border-b border-zinc-800 dark:border-gray-200">
       <AnimationText className="z-50">The Dev Tunnes. </AnimationText>
 
       <nav className="z-10 absolute w-full flex flex-1 justify-center items-center gap-4">

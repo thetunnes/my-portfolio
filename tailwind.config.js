@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'tall': { 'raw': '(max-width: 768px)' },
+        'tall': { 'raw': '(max-width: 896px)' },
         // => @media (min-height: 800px) { ... }
       },
       backgroundImage: {
