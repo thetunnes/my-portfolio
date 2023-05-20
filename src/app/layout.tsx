@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { Header } from './components/Header'
+import { Header } from '../components/Header'
 import { Providers } from './providers'
 import { useTheme } from "next-themes"
 

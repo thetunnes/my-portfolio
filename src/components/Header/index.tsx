@@ -28,7 +28,6 @@ export function Header() {
     setTheme(newTheme);
   }
 
-  console.log(window.location.pathname === listMenus[0].url)
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
 
   return (
