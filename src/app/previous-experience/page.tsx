@@ -1,4 +1,4 @@
-import { RenderPageHome } from "../components/RenderPageHome";
+import { RenderPageHome } from "../../components/RenderPageHome";
 
 const arrayCompanies = [
   {

@@ -1,5 +1,5 @@
-import { Header } from "./components/Header";
-import { MainText } from "./components/MainTextAnimate";
+import { Header } from "../components/Header";
+import { MainText } from "../components/MainTextAnimate";
 import FotoPerfil from "./assets/foto-ccxp.jpg"
 import Image from "next/image";
 
