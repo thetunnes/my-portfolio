@@ -47,7 +47,9 @@ export function MenuMobile({ listMenus }: IMenuMobileProps) {
             key={menu.text}
             href={menu.url}
             className={`${
-              window.location.pathname === menu.url && 'text-green-400'
+              typeof window !== 'undefined' &&
+              window.location.pathname === menu.url &&
+              'text-green-400'
             } w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400`}
           >
             {menu.text}
