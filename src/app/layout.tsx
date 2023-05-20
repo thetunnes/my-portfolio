@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <main className="h-[calc(100vh-5rem)] mt-20">
+          <main className="min-h-[calc(100vh-5rem)] mt-20">
           {children}
           </main>
         </Providers>
