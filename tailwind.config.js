@@ -2,22 +2,26 @@ import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: 'class',
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: 'var(--font-inter)',
+      },
       screens: {
-        'tall': { 'raw': '(max-width: 896px)' },
+        small: { raw: '(max-width: 896px)' },
+        tall: { raw: '(min-width: 896px)' },
         // => @media (min-height: 800px) { ... }
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',
@@ -25,47 +29,47 @@ module.exports = {
         lg: '0 8px 16px var(--tw-shadow-color)',
       },
       transitionProperty: {
-        height: "height",
-        spacing: "margin, padding",
+        height: 'height',
+        spacing: 'margin, padding',
       },
       keyframes: {
         shine: {
-          "0%": {
+          '0%': {
             backgroundPosition: 0,
           },
-          "60%": {
-            backgroundPosition: "180px",
+          '60%': {
+            backgroundPosition: '180px',
           },
-          "100%": {
-            backgroundPosition: "240px",
+          '100%': {
+            backgroundPosition: '240px',
           },
         },
         pipe: {
-          "0%": {
+          '0%': {
             opacity: 0,
           },
-          "100%": {
+          '100%': {
             opacity: 1,
           },
         },
         shake: {
-          "0%": { transform: "translate(2px, 1px) rotate(0deg)" },
-          "10%": { transform: "translate(-1px, -2px) rotate(-1deg)" },
-          "20%": { transform: "translate(-3px, 0px) rotate(1deg)" },
-          "30%": { transform: "translate(0px, 2px) rotate(0deg)" },
-          "40%": { transform: "translate(1px, -1px) rotate(1deg)" },
-          "50%": { transform: "translate(-1px, 2px) rotate(-1deg)" },
-          "60%": { transform: "translate(-3px, 1px) rotate(0deg)" },
-          "70%": { transform: "translate(2px, 1px) rotate(-1deg)" },
-          "80%": { transform: "translate(-1px, -1px) rotate(1deg)" },
-          "90%": { transform: "translate(2px, 2px) rotate(0deg)" },
-          "100%": { transform: "translate(1px, -2px) rotate(-1deg)" },
+          '0%': { transform: 'translate(2px, 1px) rotate(0deg)' },
+          '10%': { transform: 'translate(-1px, -2px) rotate(-1deg)' },
+          '20%': { transform: 'translate(-3px, 0px) rotate(1deg)' },
+          '30%': { transform: 'translate(0px, 2px) rotate(0deg)' },
+          '40%': { transform: 'translate(1px, -1px) rotate(1deg)' },
+          '50%': { transform: 'translate(-1px, 2px) rotate(-1deg)' },
+          '60%': { transform: 'translate(-3px, 1px) rotate(0deg)' },
+          '70%': { transform: 'translate(2px, 1px) rotate(-1deg)' },
+          '80%': { transform: 'translate(-1px, -1px) rotate(1deg)' },
+          '90%': { transform: 'translate(2px, 2px) rotate(0deg)' },
+          '100%': { transform: 'translate(1px, -2px) rotate(-1deg)' },
         },
       },
       animation: {
-        textColor: "shine 1.5s linear",
-        pipeAnimate: "pipe 0.5s linear infinite",
-        shakeText: "shake 3s linear infinite"
+        textColor: 'shine 1.5s linear',
+        pipeAnimate: 'pipe 0.5s linear infinite',
+        shakeText: 'shake 3s linear infinite',
       },
     },
   },
@@ -77,8 +81,8 @@ module.exports = {
             textShadow: value,
           }),
         },
-        { values: theme('textShadow') }
+        { values: theme('textShadow') },
       )
     }),
   ],
-};
+}

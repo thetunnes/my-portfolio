@@ -1,27 +1,19 @@
-"use client"
-import { useEffect } from 'react'
-import './globals.css'
+'use client'
+import { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 import { Header } from '../components/Header'
 import { Providers } from './providers'
-import { useTheme } from "next-themes"
+import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={`${inter.variable} font-sans`}>
         <Providers>
           <Header />
-          <main className="min-h-[calc(100vh-5rem)] mt-20">
-          {children}
-          </main>
+          <main className="mt-20 min-h-[calc(100vh-5rem)]">{children}</main>
         </Providers>
       </body>
     </html>

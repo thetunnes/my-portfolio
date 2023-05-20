@@ -1,23 +1,23 @@
-import { RenderPageHome } from "../../components/RenderPageHome";
+import { RenderPageHome } from '../../components/RenderPageHome'
 
 const arrayCompanies = [
   {
-    companyName: "Coinsure",
-    urlSite: "https://zeca.coinsure.com.br",
+    companyName: 'Coinsure',
+    urlSite: 'https://zeca.coinsure.com.br',
   },
   {
-    companyName: "MaxCred",
-    urlSite: "https://app.maxcred.net",
+    companyName: 'MaxCred',
+    urlSite: 'https://app.maxcred.net',
   },
   {
-    companyName: "Tibia Project",
-    urlSite: "https://tibiaproject.com",
+    companyName: 'Tibia Project',
+    urlSite: 'https://tibiaproject.com',
   },
-];
+]
 
 export default function PreviousExperience() {
   return (
-    <main className="w-full px-6 flex flex-col items-center justify-center">
+    <main className="flex w-full flex-col items-center justify-center px-6">
       {arrayCompanies.map((company) => (
         <RenderPageHome
           companyName={company.companyName}
@@ -26,5 +26,5 @@ export default function PreviousExperience() {
         />
       ))}
     </main>
-  );
+  )
 }

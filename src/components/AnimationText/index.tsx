@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 interface IAnimationText {
   children: ReactNode
@@ -6,12 +6,18 @@ interface IAnimationText {
   className?: string
 }
 
-export function AnimationText({children, className, onClick}: IAnimationText) {
-
+export function AnimationText({
+  children,
+  className,
+  onClick,
+}: IAnimationText) {
   return (
     <h2
-    onClick={onClick} 
-    className={`animateTitle bg-text bg-clip-text font-semibold whitespace-nowrap hover:animate-textColor text-xl flex items-center gap-2 cursor-pointer ${className && className}`}>
+      onClick={onClick}
+      className={`animateTitle bg-text flex cursor-pointer items-center gap-2 whitespace-nowrap bg-clip-text text-xl font-semibold hover:animate-textColor small:leading-6 ${
+        className && className
+      }`}
+    >
       {children}
     </h2>
   )
