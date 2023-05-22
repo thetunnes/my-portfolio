@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${inter.variable} font-sans`}>
         <Providers>
           <Header />
-          <main className="mt-20 min-h-[calc(100vh-5rem)]">{children}</main>
+          <main className=" mt-20 min-h-[calc(100vh-5rem)]">{children}</main>
           <Footer />
         </Providers>
       </body>

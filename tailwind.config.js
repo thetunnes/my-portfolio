@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         sans: 'var(--font-inter)',
       },
+      colors: {
+        'color-instagram':
+          'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
+      },
       screens: {
         small: { raw: '(max-width: 896px)' },
         tall: { raw: '(min-width: 896px)' },
@@ -22,6 +26,8 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'color-instagram':
+          'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
       },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',

@@ -1,17 +1,46 @@
+import IconInstagram from '../IconInstagram'
+import IconLinkedin from '../IconLinkedin'
+import TooltipIcons from '../TooltipIcons'
+
 export function Footer() {
   return (
-    <footer className=" flex flex-col items-center justify-center gap-2 rounded-xl border-t border-gray-100 p-4">
-      <p className="text-center">Todos os direitos reservados.</p>
-      <p className="w-[520px] text-center text-xs">
-        Junto dessa aplicação, foi desenvolvida uma simples documentação e para
-        mostrar todo o meu trabalho,{' '}
+    <footer className="flex items-center justify-evenly gap-2 rounded-xl border-t border-zinc-800 px-6 py-4 dark:border-gray-100">
+      <TooltipIcons
+        contentTooltip={<p className="text-xs">Caue&apos;s Linkedin</p>}
+      >
         <a
-          href="https://www.notion.so/project-development/Processo-de-cria-o-Portf-lio-Tunnes-84232317a7cd4b9d9c7dd3a82581b5b0"
-          className="text-gray-100 underline transition-colors duration-500 hover:text-green-600"
+          href="https://www.linkedin.com/in/caue-pani/"
+          target="_blank"
+          rel="noreferrer"
         >
-          a doc pode ser acessada aqui
+          <IconLinkedin className="h-6 w-6 grayscale transition-all duration-500 hover:grayscale-0" />
         </a>
-      </p>
+      </TooltipIcons>
+
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-center">Web site para portfólio.</p>
+        <p className="w-[540px] text-center text-xs small:w-auto">
+          Junto dessa aplicação, foi desenvolvida uma simples documentação e
+          para mostrar todo o meu trabalho,{' '}
+          <a
+            href="https://www.notion.so/project-development/Processo-de-cria-o-Portf-lio-Tunnes-84232317a7cd4b9d9c7dd3a82581b5b0"
+            className="w-max underline transition-colors duration-500 hover:text-green-600"
+          >
+            a doc pode ser acessada aqui
+          </a>
+        </p>
+      </div>
+      <TooltipIcons
+        contentTooltip={<p className="text-xs">Tunnes&apos;s Instagram</p>}
+      >
+        <a
+          href="https://instagram.com/thetunnes"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <IconInstagram className="h-6 w-6 grayscale transition-all duration-500 hover:grayscale-0" />
+        </a>
+      </TooltipIcons>
     </footer>
   )
 }
