@@ -19,6 +19,7 @@ module.exports = {
       },
       screens: {
         small: { raw: '(max-width: 896px)' },
+        xsmall: { raw: '(max-width: 400px)' },
         tall: { raw: '(min-width: 896px)' },
         // => @media (min-height: 800px) { ... }
       },
@@ -43,11 +44,8 @@ module.exports = {
           '0%': {
             backgroundPosition: 0,
           },
-          '60%': {
-            backgroundPosition: '180px',
-          },
           '100%': {
-            backgroundPosition: '240px',
+            backgroundPosition: 150,
           },
         },
         pipe: {

@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { prisma } from '../../../lib/prisma'
 import { NextRequest } from 'next/server'
 
@@ -12,11 +13,21 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const technologies = await prisma.technology.findMany({
-    orderBy: {
-      name: 'asc',
-    },
+  const body = await request.json()
+
+  const bodySchema = z.object({
+    name: z.string(),
+    icon: z.string(),
+    studyStartDate: z.string().datetime(),
   })
 
-  return technologies
+  const { icon, name, studyStartDate } = bodySchema.parse(body)
+
+  await prisma.technology.create({
+    data: {
+      icon,
+      name,
+      study_start_date: studyStartDate,
+    },
+  })
 }

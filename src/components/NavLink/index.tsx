@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,7 +14,7 @@ export function NavLink({ text, url }: INavLink) {
     <Link
       href={url}
       className={`
-    relative cursor-pointer transition-all  after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-green-600
+    relative cursor-pointer transition-all  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-green-600
     ${
       pathName === url
         ? 'text-green-600 after:w-1/2'

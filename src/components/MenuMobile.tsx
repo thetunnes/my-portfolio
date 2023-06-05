@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -46,11 +47,9 @@ export function MenuMobile({ listMenus }: IMenuMobileProps) {
           <Link
             key={menu.text}
             href={menu.url}
-            className={`${
-              typeof window !== 'undefined' &&
-              window.location.pathname === menu.url &&
-              'text-green-400'
-            } w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400`}
+            className={`w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400 ${
+              window?.location.pathname === menu.url ? 'text-green-400' : ''
+            }`}
           >
             {menu.text}
           </Link>

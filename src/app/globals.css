@@ -24,14 +24,14 @@ body {
 
 h2.animateTitle {
   color: #1E1E1E;
-  background: linear-gradient(to left, #1E1E1E 0, #4ade80 0%, #1E1E1E 20%);
+  background: linear-gradient(to left, #1E1E1E 0, #4ade80 0%, #1E1E1E 10%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .dark .animateTitle {
   color: #fbfbfb;
-  background: linear-gradient(to left, #fbfbfb 0, #4ade80 0%, #fbfbfb 20%);
+  background: linear-gradient(to left, #fbfbfb 0, #4ade80 0%, #fbfbfb 10%);
   /* padding: 0 1.5rem; */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

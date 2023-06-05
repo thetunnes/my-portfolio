@@ -1,5 +1,6 @@
-import IconInstagram from '../IconInstagram'
-import IconLinkedin from '../IconLinkedin'
+'use client'
+import IconInstagram from '../Icons/IconInstagram'
+import IconLinkedin from '../Icons/IconLinkedin'
 import TooltipIcons from '../TooltipIcons'
 
 export function Footer() {
