@@ -1,6 +1,7 @@
 import { api } from '@/lib/api'
 import { prisma } from '@/lib/prisma'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import Credentials from 'next-auth/providers/credentials'
@@ -49,4 +50,8 @@ export const authOptions: NextAuthOptions = {
   },
 }
 
-export default NextAuth(authOptions)
+async function auth(req: NextApiRequest, res: NextApiResponse) {
+  return await NextAuth(authOptions)
+}
+
+export { auth as GET, auth as POST }
