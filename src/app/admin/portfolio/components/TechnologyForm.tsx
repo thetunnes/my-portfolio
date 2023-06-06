@@ -8,21 +8,21 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 const formSchema = z.object({
   name: z.string(),
-  icon: z.instanceof(FileList),
+  icon: z.instanceof(File),
   startStudyDate: z.string().datetime(),
 })
 
 type IFormSchema = z.infer<typeof formSchema>
 
 export function TechnologyForm() {
-  const { notifyError, notifySuccess } = useToasts()
+  const { notifySuccess } = useToasts()
 
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
   })
 
@@ -45,7 +45,6 @@ export function TechnologyForm() {
     }
   }
 
-  console.log(getValues('icon'))
   return (
     <form
       className="flex flex-1 flex-col items-center justify-center gap-2"

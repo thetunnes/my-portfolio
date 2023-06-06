@@ -3,7 +3,6 @@ import { Button } from '@/components/Button'
 import { InputText } from '@/components/InputText'
 import { api } from '@/lib/api'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useSession } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -17,13 +16,10 @@ const schemaSignUp = z.object({
 type SignUpData = z.infer<typeof schemaSignUp>
 
 export default function SignUp() {
-  const session = useSession()
-  const { register, handleSubmit, formState } = useForm<SignUpData>({
+  const { register, handleSubmit } = useForm<SignUpData>({
     resolver: zodResolver(schemaSignUp),
   })
-  const { errors } = formState
 
-  console.log(session)
   async function handleSignUpUser(data: SignUpData) {
     try {
       const { email, name, password } = data
