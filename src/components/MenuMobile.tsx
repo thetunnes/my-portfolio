@@ -9,6 +9,12 @@ interface IMenuMobileProps {
 export function MenuMobile({ listMenus }: IMenuMobileProps) {
   const [isOpen, setIsOpen] = useState(false)
 
+  function verifyUrl(urlMenu: string) {
+    if (typeof window === 'undefined') return ''
+
+    return window?.location.pathname === urlMenu ? 'text-green-400' : ''
+  }
+
   return (
     <div className="relative tall:hidden" id="Menu-Mobile">
       <button
@@ -47,9 +53,9 @@ export function MenuMobile({ listMenus }: IMenuMobileProps) {
           <Link
             key={menu.text}
             href={menu.url}
-            className={`w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400 ${
-              window?.location.pathname === menu.url ? 'text-green-400' : ''
-            }`}
+            className={`w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400 ${verifyUrl(
+              menu.url,
+            )}`}
           >
             {menu.text}
           </Link>
