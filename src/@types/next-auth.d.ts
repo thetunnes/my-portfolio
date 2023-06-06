@@ -10,4 +10,10 @@ declare module 'next-auth' {
     username: string
     auth: boolean
   }
+
+  export interface Session {
+    user: User
+    expires: number
+    admin: boolean
+  }
 }

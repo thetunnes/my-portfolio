@@ -9,7 +9,7 @@ interface IRenderPageProps {
   description: ReactNode
 }
 
-export function RenderPageHome({
+export function ExperienceInCompany({
   companyName,
   urlSite,
   description,
@@ -42,7 +42,7 @@ export function RenderPageHome({
           // width={1120}
         />
       </Suspense>
-      <p className="text-sm">{description}</p>
+      {description}
     </div>
   )
 }

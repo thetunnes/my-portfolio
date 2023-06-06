@@ -1,12 +1,12 @@
 import TooltipIcons from '@/components/TooltipIcons'
-import { RenderPageHome } from '../../components/RenderPageHome'
+import { ExperienceInCompany } from '../../components/ExperienceInCompany'
 
 const arrayCompanies = [
   {
     companyName: 'Coinsure',
     urlSite: 'https://zeca.coinsure.com.br',
     description: (
-      <p>
+      <p className="text-sm">
         Fui contratado em <b>set/2021</b>, essa foi minha primeira experiência,
         uma startup pequena que tinha como principal produto a democratização de
         seguros{' '}
@@ -23,16 +23,15 @@ const arrayCompanies = [
   },
   {
     companyName: 'MaxCred',
-    urlSite: 'https://app.maxcred.net',
+    urlSite: 'https://app.maxcred.net/home',
     description: (
-      <p>
+      <p className="text-sm">
         Iniciando meus projetos <strong>freelancer</strong> em{' '}
         <strong>nov/2022</strong>, entrei no desenvolvimento Front-end para a
         empresa Maxcred. Trabalho junto de outro Dev Back-end e desde o ínicio
-        criamos uma boa stack JS para a aplicação, inciando no Back-end com:
-        <strong>
-          NodeJS (with ExpressJS), TypeScript, MySQL, Prisma, Zod
-        </strong>{' '}
+        criamos uma boa stack JS para a aplicação, o Back-end foi desenvolvido
+        com:{' '}
+        <strong>NodeJS (with ExpressJS), TypeScript, MySQL, Prisma, Zod</strong>{' '}
         e no Front-end utilizamos <strong>React</strong> utilizando{' '}
         <strong>Vite</strong>, com{' '}
         <strong>
@@ -47,7 +46,7 @@ const arrayCompanies = [
     companyName: 'Tibia Project',
     urlSite: 'https://tibiaproject.com',
     description: (
-      <p>
+      <p className="text-sm">
         Fui chamado para fazer parte da equipe de desenvolvimento da aplicação
         Web de um servidor do jogo <strong>Tibia</strong>, entrei na equipe em
         fev/2023. A aplicação não foi iniciada por mim, mas foi criada
@@ -75,7 +74,7 @@ export default function PreviousExperience() {
         Lista de projetos desenvolvidos profissionalmente
       </h2>
       {arrayCompanies.map((company) => (
-        <RenderPageHome
+        <ExperienceInCompany
           companyName={company.companyName}
           urlSite={company.urlSite}
           key={company.companyName}

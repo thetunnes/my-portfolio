@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface IMenuMobileProps {
   listMenus: Array<{ text: string; url: string }>
@@ -8,12 +8,16 @@ interface IMenuMobileProps {
 
 export function MenuMobile({ listMenus }: IMenuMobileProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [color, setColor] = useState('')
 
-  function verifyUrl(urlMenu: string) {
-    if (typeof window === 'undefined') return ''
-
-    return window?.location.pathname === urlMenu ? 'text-green-400' : ''
-  }
+  useEffect(() => {
+    const indexMenu = listMenus.findIndex(
+      (menu) => menu.url === window.location.pathname,
+    )
+    if (indexMenu >= 0) {
+      setColor(`${listMenus[indexMenu].text}|text-green-400`)
+    }
+  }, [listMenus])
 
   return (
     <div className="relative tall:hidden" id="Menu-Mobile">
@@ -53,9 +57,9 @@ export function MenuMobile({ listMenus }: IMenuMobileProps) {
           <Link
             key={menu.text}
             href={menu.url}
-            className={`w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400 ${verifyUrl(
-              menu.url,
-            )}`}
+            className={`w-max px-2 pt-1 transition-colors last:pb-2 hover:text-green-400 ${
+              color.split('|')[0] === menu.text ? color.split('|')[1] : ''
+            }`}
           >
             {menu.text}
           </Link>

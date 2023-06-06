@@ -12,7 +12,7 @@ export function MainText() {
   const [finalText, setFinalText] = useState('')
   const [wordsRendered, setWordsRendered] = useState<Array<string>>([])
 
-  const wordFinal = 'The Tunnes é o Dev. ideal para sua empresa.'
+  const wordFinal = 'The Tunnes is better Developer for your Business.'
   async function renderThisText() {
     setTimeout(() => {
       let i = 0
@@ -66,19 +66,20 @@ export function MainText() {
       ) : (
         <p className="antialised relative flex flex-col items-start font-mono font-semibold leading-normal tracking-wider">
           <span className="self-start text-3xl">The Tunnes is a</span>
-          {wordsRendered.map((word) => (
+          {wordsRendered.map((word, i) => (
             <span
               key={word}
               className=" mb-3 text-4xl tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500 text-shadow"
             >
               {word}
-              {posWord < words.length ? (
-                <b className="text-indigo-500">,</b>
-              ) : null}
+              {i < words.length ? <b className="text-indigo-500">,</b> : null}
             </span>
           ))}
           <span className="after:content-[ ] relative w-max text-4xl leading-normal tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500 text-shadow after:absolute after:bottom-0 after:right-0 after:top-0 after:ml-2 after:w-[2px] after:animate-pipeAnimate after:bg-slate-950 after:dark:bg-slate-100">
             {text}
+            {text.includes(words[words.length - 1]) ? (
+              <b className="text-indigo-500">.</b>
+            ) : null}
           </span>
         </p>
       )}

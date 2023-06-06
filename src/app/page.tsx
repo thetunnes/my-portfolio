@@ -23,12 +23,9 @@ export default function Home() {
       <div className="flex h-full w-1/2 flex-1 flex-col justify-center gap-4 small:w-full">
         <MainText />
         <p className="text-justify text-lg">
-          Olá mundo! Eu me chamo Cauê, tenho 22 anos e a alguns anos me aventuro
-          no mundo da programação. Dentro da internet{' '}
-          <strong className="text-slate-800 dark:text-gray-300">
-            (nas redes sociais)
-          </strong>{' '}
-          também serei muito encontrado como{' '}
+          Olá mundo! Eu me chamo Cauê, tenho 23 anos e a alguns anos me aventuro
+          no mundo da programação. Nas redes sociais também serei encontrado
+          como{' '}
           <strong className="text-slate-800 dark:text-gray-300">
             “The Tunnes”
           </strong>

@@ -45,12 +45,12 @@ export async function ListProjects({
     <div className="mx-auto flex w-full max-w-5xl flex-col justify-center space-y-3 px-3">
       {!!repos?.length &&
         repos.map((repo) => (
-          <Link
-            href={repo.html_url}
+          <button
+            onClick={() => navigate(repo.html_url)}
             key={repo.id}
-            className="space-y-2 rounded-md border border-transparent px-2 py-3 transition-all duration-500 hover:border-gray-200"
+            className="flex flex-col items-start space-y-2 rounded-md border border-transparent px-2 py-3 transition-all duration-500 hover:border-zinc-600 dark:hover:border-gray-200"
           >
-            <header className="flex items-start justify-between gap-2">
+            <header className="flex w-full items-start justify-between gap-2">
               <div className="flex flex-1 items-start gap-2">
                 <Image
                   src={repo.owner.avatar_url}
@@ -78,10 +78,10 @@ export async function ListProjects({
                 {Intl.DateTimeFormat('pt-br').format(new Date(repo.created_at))}
               </time>
             </header>
-            <p className="text-sm text-zinc-700 dark:text-gray-400">
+            <p className="ml-12 text-justify text-sm text-zinc-700 dark:text-gray-400">
               {repo.description}
             </p>
-          </Link>
+          </button>
         ))}
     </div>
   )

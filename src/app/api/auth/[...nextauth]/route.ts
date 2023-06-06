@@ -6,7 +6,8 @@ import NextAuth from 'next-auth/next'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXT_PUBLIC_SECRET_NEXT,
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
@@ -26,7 +27,6 @@ const authOptions: NextAuthOptions = {
           email: credentials?.email,
           password: credentials?.password,
         })
-        console.log(response)
 
         const user = response.data.user
 
@@ -42,7 +42,7 @@ const authOptions: NextAuthOptions = {
     async session({ session, user }) {
       return {
         user,
-        admin: user.name === 'Tunnes',
+        admin: user.id === 'clikjji020000u700lbb87mow',
         expires: session.expires,
       }
     },
