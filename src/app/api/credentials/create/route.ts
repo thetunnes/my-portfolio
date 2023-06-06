@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { hash } from 'bcrypt'
@@ -55,6 +54,4 @@ async function handlerPost(req: Request, res: Response) {
   return NextResponse.json({ user: prismaUser }, { status: 201 })
 }
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {}
-
-export { handler as GET, handlerPost as POST }
+export { handlerPost as GET, handlerPost as POST }
