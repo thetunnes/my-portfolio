@@ -22,7 +22,7 @@ export function InputFile<IFormValues extends FieldValues>({
     if (file) {
       const urlFile = URL.createObjectURL(file)
 
-      window.open(urlFile, '_blank')
+      typeof window !== 'undefined' && window.open(urlFile, '_blank')
     }
   }
 
