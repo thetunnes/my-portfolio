@@ -50,7 +50,7 @@ const authOptions: NextAuthOptions = {
   },
 }
 
-async function auth(req: NextApiRequest, res: NextApiResponse) {
+async function auth() {
   return await NextAuth(authOptions)
 }
 
