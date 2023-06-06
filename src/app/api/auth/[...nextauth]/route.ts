@@ -1,7 +1,6 @@
 import { api } from '@/lib/api'
 import { prisma } from '@/lib/prisma'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import Credentials from 'next-auth/providers/credentials'
