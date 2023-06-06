@@ -49,8 +49,4 @@ const authOptions: NextAuthOptions = {
   },
 }
 
-async function auth() {
-  return await NextAuth(authOptions)
-}
-
-export { auth as GET, auth as POST }
+export default NextAuth(authOptions)
