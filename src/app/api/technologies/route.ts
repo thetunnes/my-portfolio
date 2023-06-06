@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     data: {
       icon,
       name,
-      study_start_date: studyStartDate,
+      start_date: studyStartDate,
     },
   })
 }
