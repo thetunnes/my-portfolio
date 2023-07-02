@@ -32,14 +32,29 @@ async function handlerPost(req: Request, res: Response) {
   })
 
   if (userExists) {
-    return NextResponse.json(
-      {
-        message: 'Already exists a account with this e-mail',
+    await prisma.user.update({
+      data: {
+        name,
+        email,
+        auth,
+        password: hashedPassword,
+        avatar_url: userExists.avatar_url ?? '',
       },
-      {
-        status: 400,
+      where: {
+        id: userExists.id,
       },
-    )
+    })
+
+    await prisma.account.create({
+      data: {
+        user_id: userExists.id,
+        type: 'credentials',
+        provider: 'credentials',
+        provider_account_id: userExists.id,
+      },
+    })
+
+    return NextResponse.json({}, { status: 201 })
   }
 
   const prismaUser = await prisma.user.create({
@@ -48,6 +63,16 @@ async function handlerPost(req: Request, res: Response) {
       email,
       auth,
       password: hashedPassword,
+      avatar_url: '',
+    },
+  })
+
+  await prisma.account.create({
+    data: {
+      user_id: prismaUser.id,
+      type: 'credentials',
+      provider: 'credentials',
+      provider_account_id: prismaUser.id,
     },
   })
 

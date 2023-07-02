@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <section className="flex w-full items-start justify-center gap-4 small:flex-col">
-      <div className="mx-auto flex w-max flex-1 flex-col items-center justify-center gap-1 ">
+      <div className="mx-auto flex w-full flex-1 flex-col items-center justify-center gap-1 ">
         <Image
           alt="Foto perfil"
           src={FotoPerfil}

@@ -2,18 +2,17 @@
 import NextAuth from 'next-auth/next'
 
 declare module 'next-auth' {
-  export interface User {
+  interface User {
     id: string
     name: string
     avatar_url: string
     email: string
-    username: string
     auth: boolean
   }
 
   export interface Session {
+    id: string
     user: User
-    expires: number
     admin: boolean
   }
 }

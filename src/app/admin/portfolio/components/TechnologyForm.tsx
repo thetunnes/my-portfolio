@@ -29,7 +29,6 @@ export function TechnologyForm() {
   console.log(errors)
 
   async function handleSubmitTech(data: IFormSchema) {
-    console.log(data)
     try {
       // const iconTechnology = formData.get('icon')
 

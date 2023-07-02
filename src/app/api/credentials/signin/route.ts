@@ -3,7 +3,7 @@ import { compare } from 'bcrypt'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: Response) {
   if (req.method !== 'POST') {
     return NextResponse.json(
       { message: 'Only POST requests allowed' },
@@ -31,9 +31,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 })
   }
 
-  const validateHash = compare(password, user.password)
+  const validateHash = await compare(password, user.password)
 
-  console.log('Senhas conferem?', validateHash)
+  if (!validateHash) {
+    return NextResponse.json(
+      { message: 'Password not match.' },
+      { status: 401 },
+    )
+  }
 
-  return NextResponse.json({ user })
+  const response = NextResponse.json({ user })
+
+  return response
 }

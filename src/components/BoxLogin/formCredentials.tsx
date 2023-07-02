@@ -16,9 +16,9 @@ export function FormCredentials({ onPrevStage }: IFormProps) {
     email: '',
     password: '',
   })
-  function handleSignIn(e: FormEvent) {
+  async function handleSignIn(e: FormEvent) {
     e.preventDefault()
-    signIn('credentials', {
+    await signIn('credentials', {
       email: dataLogin.email,
       password: dataLogin.password,
     })
