@@ -4,17 +4,16 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <section className="flex w-full items-start justify-center gap-4 small:flex-col">
+    <section className="flex h-full w-full items-start justify-center gap-4 small:flex-col">
       <div className="mx-auto flex w-full flex-1 flex-col items-center justify-center gap-1 ">
         <Image
           alt="Foto perfil"
           src={FotoPerfil}
-          height={450}
-          sizes="450px"
+          height={400}
           className="rounded-lg shadow-sm shadow-indigo-300"
           priority
         />
-        <span className="w-3/4 text-center text-sm text-zinc-600">
+        <span className="w-full max-w-[360px] text-center text-sm text-zinc-600">
           * Foto tirada na CCXP 2022, evento Geek que ocorre todos os anos em
           São Paulo.
         </span>

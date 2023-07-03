@@ -1,13 +1,13 @@
 import { api } from '@/lib/api'
 import PrismaAdapter from '@/lib/auth/prisma-adapter'
 import { prisma } from '@/lib/prisma'
-import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
-import { setCookie } from 'nookies'
 import { v4 as uuidV4 } from 'uuid'
+import { encode, decode } from 'next-auth/jwt'
 
 interface IUser {
   id: string
@@ -22,11 +22,9 @@ const fromDate = (time: number, date = Date.now()) =>
   new Date(date + time * 1000)
 
 export function authOptions(
-  req: NextApiRequest | NextPageContext['req'],
-  res: NextApiResponse | NextPageContext['res'],
+  req: NextApiRequest,
+  res: NextApiResponse,
 ): NextAuthOptions {
-  console.log(req?.url)
-  // let userAccount: IUser | null = null
   const adapter = PrismaAdapter(prisma)
   return {
     secret: process.env.NEXT_PUBLIC_SECRET_NEXT,
@@ -37,6 +35,32 @@ export function authOptions(
 
       updateAge: 24 * 60 * 60, // 24 hours
       generateSessionToken,
+    },
+    jwt: {
+      encode: async ({ token, secret, maxAge }) => {
+        if (
+          req?.url?.includes('callback') &&
+          req?.url?.includes('credentials') &&
+          req?.method === 'POST' &&
+          token
+        ) {
+          const sessionTokenId = token.sessionToken
+
+          if (sessionTokenId) return sessionTokenId
+          // else return ''
+        }
+        return encode({ token, secret, maxAge }) // <<<<<<   This needed to be wrapped with braces
+      },
+      decode: async ({ token, secret }) => {
+        if (
+          req?.url?.includes('callback') &&
+          req?.url?.includes('credentials') &&
+          req?.method === 'POST'
+        ) {
+          return null
+        }
+        return decode({ token, secret }) //  <<<<<  This needed to be wrapped with braces
+      },
     },
     providers: [
       GithubProvider({
@@ -78,11 +102,14 @@ export function authOptions(
     //   },
     // },
     callbacks: {
-      async session({ session, user }) {
+      async session({ session, user, token }) {
+        if (token) {
+          session.id = token.id as string
+        }
         return {
+          ...session,
           user,
-          admin: user.id === 'clikjji020000u700lbb87mow',
-          expires: session.expires,
+          admin: user.auth,
         }
       },
       async signIn({ user, account, profile, email, credentials }) {
@@ -92,19 +119,20 @@ export function authOptions(
           const sessionMaxAge = 60 * 60 * 24 * 30 // 30Daysconst sessionMaxAge = 60 * 60 * 24 * 30; //30Days
           const sessionExpiry = fromDate(sessionMaxAge)
 
-          const { sessionToken: sessionSaved } = await PrismaAdapter(
-            prisma,
-          ).createSession({
+          const newSessionToken = await PrismaAdapter(prisma).createSession({
             sessionToken,
             userId: user.id,
             expires: sessionExpiry,
           })
-
-          setCookie(null, 'next-auth.session-token', sessionSaved, {
-            maxAge: sessionMaxAge,
-          })
+          user.sessionToken = newSessionToken.sessionToken
         }
         return true
+      },
+      async jwt({ token, user, session }) {
+        if (user) {
+          token.id = user.id
+        }
+        return { ...token, ...user }
       },
     },
   }

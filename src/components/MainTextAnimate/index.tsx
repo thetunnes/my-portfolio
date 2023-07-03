@@ -12,7 +12,7 @@ export function MainText() {
   const [finalText, setFinalText] = useState('')
   const [wordsRendered, setWordsRendered] = useState<Array<string>>([])
 
-  const wordFinal = 'The Tunnes is better Developer for your Business.'
+  const wordFinal = 'The Tunnes is best Developer for your Business.'
   async function renderThisText() {
     setTimeout(() => {
       let i = 0

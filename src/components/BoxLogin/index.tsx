@@ -1,10 +1,11 @@
 'use client'
 import { forwardRef, useEffect, useState } from 'react'
-import { Github, LogOut, Mail, User2Icon } from 'lucide-react'
+import { Cpu, Github, LogOut, Mail, User2Icon } from 'lucide-react'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { FormCredentials } from './formCredentials'
 import { Button } from '../Button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
   props,
@@ -14,7 +15,7 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
   const [isOpenTab, setIsOpenTab] = useState(false)
   const [hasLoginWithEmail, setHasLoginWithEmail] = useState(false)
 
-  console.log('SESSIONFRONT', session)
+  // console.log('SESSIONFRONT', session)
   function selectTypeLogin(type: string) {
     switch (type) {
       case 'credentials':
@@ -58,9 +59,9 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
           onClick={() => selectTypeLogin('logged')}
           className="group relative z-50 flex cursor-pointer  flex-col items-center outline-white focus:outline-1"
         >
-          {session.user?.image ? (
+          {session.user?.avatar_url ? (
             <Image
-              src={session.user?.image}
+              src={session.user?.avatar_url}
               width={28}
               height={28}
               alt=""
@@ -91,9 +92,22 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
       {isOpenTab ? (
         <div className="absolute right-9 top-full z-[100] -my-4 flex w-[240px] flex-col gap-2 rounded-lg border border-zinc-800 bg-gray-200 px-4 py-2 dark:border-gray-200 dark:bg-zinc-900">
           {session && (
-            <Button color="red" onClick={() => signOut()} w="full">
-              Sair <LogOut />
-            </Button>
+            <>
+              {session.admin ? (
+                <nav className="flex flex-col justify-center gap-2 py-2">
+                  <Link
+                    href="/technologies"
+                    className="flex items-start gap-2 transition-all hover:translate-x-2 hover:text-green-600"
+                  >
+                    <Cpu />
+                    Adicionar tecnologias
+                  </Link>
+                </nav>
+              ) : null}
+              <Button color="red" size="sm" onClick={() => signOut()} w="full">
+                Sair <LogOut size={16} />
+              </Button>
+            </>
           )}
 
           {hasLoginWithEmail ? (

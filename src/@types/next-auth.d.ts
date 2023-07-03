@@ -8,11 +8,19 @@ declare module 'next-auth' {
     avatar_url: string
     email: string
     auth: boolean
+    sessionToken?: string
   }
 
   export interface Session {
     id: string
     user: User
     admin: boolean
+  }
+}
+
+declare module 'next-auth/jwt' {
+  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
+  export interface JWT {
+    sessionToken?: string
   }
 }

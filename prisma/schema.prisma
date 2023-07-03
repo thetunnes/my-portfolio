@@ -60,3 +60,13 @@ model Session {
 
   @@map("sessions")
 }
+
+model Technology {
+  id               String   @id @default(uuid())
+  name             String
+  start_date_study DateTime
+  icon             String   @db.Text
+  created_at       DateTime @default(now())
+
+  @@map("technologies")
+}

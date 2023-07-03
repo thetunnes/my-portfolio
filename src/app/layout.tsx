@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Inter } from 'next/font/google'
+import { Inter } from '@next/font/google'
 import { Session } from 'next-auth'
 import { Providers } from './providers'
 import { Header } from '../components/Header'
@@ -16,11 +16,11 @@ interface LayoutProps {
 
 export default async function RootLayout({ children, session }: LayoutProps) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans`}>
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={`${inter.variable} h-full font-sans`}>
         <Providers session={session}>
           <Header />
-          <main className=" mt-20 min-h-[calc(100vh-5rem)] p-6">
+          <main className="mt-20 h-full min-h-[calc(100vh-5rem)] p-6">
             {children}
           </main>
           <Footer />

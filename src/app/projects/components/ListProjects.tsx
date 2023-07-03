@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar } from 'lucide-react'
@@ -17,23 +16,25 @@ interface IRepos {
   updated_at: string
 }
 
+async function getRepositoriesGithub() {
+  const response = await fetch(
+    `https://api.github.com/users/thetunnes/repos/?sort=updated&type=public&per_page=10&page=1`,
+    {
+      method: 'GET',
+      next: {
+        revalidate: 120,
+      },
+    },
+  )
+  return response.json()
+}
+
 export async function ListProjects({
   navigate,
 }: {
   navigate: (url: string) => void
 }) {
-  const response = await axios
-    .get(`https://api.github.com/users/thetunnes/repos`, {
-      params: {
-        sort: 'updated',
-        type: 'public',
-        per_page: 10,
-        page: 1,
-      },
-    })
-    .catch(() => navigate('/'))
-
-  const repos = response?.data as Array<IRepos>
+  const repos = await getRepositoriesGithub()
 
   if (!repos) {
     return (
@@ -44,7 +45,7 @@ export async function ListProjects({
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col justify-center space-y-3 px-3">
       {!!repos?.length &&
-        repos.map((repo) => (
+        repos.map((repo: IRepos) => (
           <button
             onClick={() => navigate(repo.html_url)}
             key={repo.id}

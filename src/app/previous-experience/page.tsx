@@ -6,26 +6,47 @@ const arrayCompanies = [
     companyName: 'Coinsure',
     urlSite: 'https://zeca.coinsure.com.br',
     description: (
-      <p className="text-sm">
-        Fui contratado em <b>set/2021</b>, essa foi minha primeira experiência,
-        uma startup pequena que tinha como principal produto a democratização de
-        seguros{' '}
-        <TooltipIcons contentTooltip={<span>RCP</span>}>
-          (Responsabilidade Cívil Profissional)
-        </TooltipIcons>
-        . Em 2021, ano que iniciei na empresa, tinha 5 Devs onde eu era o menos
-        experiente, eu pegava pequenas tasks de layout ou bugs relacionados a
-        Front-end. Iniciei o ano de 2022 assumindo mais responsabilidades,
-        idealizando, arquitetando e implementando novas features na plataforma.
-        Fiquei na empresa até <b>out/2022</b> onde meu contrato chegou ao fim.
-      </p>
+      <>
+        <p className="w-full flex-1 text-justify text-sm leading-relaxed">
+          Fui contratado em <b>set/2021</b>, essa foi minha primeira
+          experiência, uma startup pequena que tinha como principal produto a
+          venda de seguros{' '}
+          <TooltipIcons
+            contentTooltip={<span>(Responsabilidade Cívil Profissional)</span>}
+          >
+            RCP.
+          </TooltipIcons>{' '}
+          Em 2021, ano que iniciei na empresa, tinha 5 Devs onde eu era o menos
+          experiente, eu pegava pequenas tasks de layout ou bugs relacionados a
+          Front-end. Iniciei o ano de 2022 assumindo mais responsabilidades,
+          idealizando, arquitetando e implementando novas features na
+          plataforma, definindo prazos, auxiliando no desenvolvimento da API,
+          etc. Fiquei na empresa até <strong>out/2022</strong> trabalhando como
+          Full-Stack, a{' '}
+          <TooltipIcons
+            contentTooltip={
+              <span>
+                Grupo de ferramentas utilizadas para desenvolvimento da
+                aplicação
+              </span>
+            }
+          >
+            stack
+          </TooltipIcons>{' '}
+          principal utilizada pela empresa era:
+          <strong>
+            React, NodeJS (with Express), Knex, MySQL, Hook Form, Yup, Styled
+            Components.
+          </strong>
+        </p>
+      </>
     ),
   },
   {
     companyName: 'MaxCred',
     urlSite: 'https://app.maxcred.net/home',
     description: (
-      <p className="text-sm">
+      <p className="w-full flex-1 text-justify text-sm leading-relaxed">
         Iniciando meus projetos <strong>freelancer</strong> em{' '}
         <strong>nov/2022</strong>, entrei no desenvolvimento Front-end para a
         empresa Maxcred. Trabalho junto de outro Dev Back-end e desde o ínicio
@@ -46,7 +67,7 @@ const arrayCompanies = [
     companyName: 'Tibia Project',
     urlSite: 'https://tibiaproject.com',
     description: (
-      <p className="text-sm">
+      <p className="w-full flex-1 text-justify text-sm leading-relaxed">
         Fui chamado para fazer parte da equipe de desenvolvimento da aplicação
         Web de um servidor do jogo <strong>Tibia</strong>, entrei na equipe em
         fev/2023. A aplicação não foi iniciada por mim, mas foi criada

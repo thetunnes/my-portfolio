@@ -17,9 +17,9 @@ export function ExperienceInCompany({
   const [isClosedIFrame, setIsClosedIFrame] = useState(true)
 
   return (
-    <div className="m-8 mx-auto flex w-full max-w-[1120px] flex-col items-center justify-start gap-2 border-b border-b-zinc-800 py-4 dark:border-gray-200">
+    <div className="m-8 mx-auto flex w-full max-w-[1120px] flex-col items-center justify-start border-b border-b-zinc-800 py-4 dark:border-gray-200">
       <AnimationText
-        className="self-start"
+        className="mb-2 self-start"
         onClick={() => setIsClosedIFrame((prev) => !prev)}
       >
         {companyName}

@@ -10,8 +10,6 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
         },
       })
 
-      console.log('Criar usuário com esses dados: ', user)
-
       if (!prismaUser) {
         prismaUser = await prisma.user.create({
           data: {
@@ -143,7 +141,6 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
       })
     },
     async createSession({ sessionToken, userId, expires }) {
-      console.log('CREATE SESSION', sessionToken)
       await prisma.session.create({
         data: {
           user_id: userId,
@@ -160,7 +157,6 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
     },
 
     async getSessionAndUser(sessionToken) {
-      console.log('GET USER AND SESSION', sessionToken)
       const sessionDb = await prisma.session.findUnique({
         where: {
           session_token: sessionToken,

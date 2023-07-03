@@ -25,14 +25,14 @@ async function handlerPost(req: Request, res: Response) {
 
   const hashedPassword = await hash(password, 10)
 
-  const userExists = await prisma.user.findUniqueOrThrow({
+  const userExists = await prisma.user.findUnique({
     where: {
       email,
     },
   })
 
   if (userExists) {
-    await prisma.user.update({
+    const updatedUser = await prisma.user.update({
       data: {
         name,
         email,
@@ -43,16 +43,25 @@ async function handlerPost(req: Request, res: Response) {
       where: {
         id: userExists.id,
       },
-    })
-
-    await prisma.account.create({
-      data: {
-        user_id: userExists.id,
-        type: 'credentials',
-        provider: 'credentials',
-        provider_account_id: userExists.id,
+      include: {
+        accounts: true,
       },
     })
+
+    if (
+      !updatedUser.accounts.some(
+        (account) => account.provider === 'credentials',
+      )
+    ) {
+      await prisma.account.create({
+        data: {
+          user_id: userExists.id,
+          type: 'credentials',
+          provider: 'credentials',
+          provider_account_id: userExists.id,
+        },
+      })
+    }
 
     return NextResponse.json({}, { status: 201 })
   }

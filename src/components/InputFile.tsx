@@ -28,7 +28,7 @@ export function InputFile<IFormValues extends FieldValues>({
 
   return (
     <div className="flex w-full flex-1 flex-col gap-1 ">
-      {label && label}
+      {label && <label className="cursor-pointer text-sm">{label}</label>}
       <input
         {...props}
         type="file"
@@ -36,7 +36,7 @@ export function InputFile<IFormValues extends FieldValues>({
         className="invisible h-0 w-0"
         {...(register && register(name))}
       />
-      <div className="flex flex-1 justify-between gap-1 rounded border border-green-400 p-1">
+      <div className="flex flex-1 justify-between gap-1 rounded bg-zinc-300 px-2 py-1 focus:border-zinc-800 focus:bg-zinc-200 focus:outline-none dark:border-zinc-700 dark:bg-zinc-700 focus:dark:border-gray-200 focus:dark:bg-zinc-600">
         <span
           className={`${
             file?.name ? 'cursor-pointer text-blue-500 hover:underline' : ''
