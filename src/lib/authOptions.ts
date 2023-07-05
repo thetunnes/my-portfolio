@@ -3,7 +3,6 @@ import PrismaAdapter from './auth/prisma-adapter'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 import { v4 as uuidV4 } from 'uuid'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { NextAuthOptions } from 'next-auth'
 import { prisma } from './prisma'
 import { api } from './api'
@@ -20,10 +19,7 @@ const generateSessionToken = () => uuidV4()
 const fromDate = (time: number, date = Date.now()) =>
   new Date(date + time * 1000)
 
-export function authOptions(
-  req: NextApiRequest,
-  res: NextApiResponse,
-): NextAuthOptions {
+export function authOptions(): NextAuthOptions {
   const adapter = PrismaAdapter(prisma)
   return {
     secret: process.env.NEXT_PUBLIC_SECRET_NEXT,
@@ -38,9 +34,9 @@ export function authOptions(
     jwt: {
       encode: async ({ token, secret, maxAge }) => {
         if (
-          req?.url?.includes('callback') &&
-          req?.url?.includes('credentials') &&
-          req?.method === 'POST' &&
+          // req?.url?.includes('callback') &&
+          // req?.url?.includes('credentials') &&
+          // req?.method === 'POST' &&
           token
         ) {
           const sessionTokenId = token.sessionToken
@@ -51,13 +47,13 @@ export function authOptions(
         return encode({ token, secret, maxAge }) // <<<<<<   This needed to be wrapped with braces
       },
       decode: async ({ token, secret }) => {
-        if (
-          req?.url?.includes('callback') &&
-          req?.url?.includes('credentials') &&
-          req?.method === 'POST'
-        ) {
-          return null
-        }
+        // if (
+        //   req?.url?.includes('callback') &&
+        //   req?.url?.includes('credentials') &&
+        //   req?.method === 'POST'
+        // ) {
+        //   return null
+        // }
         return decode({ token, secret }) //  <<<<<  This needed to be wrapped with braces
       },
     },
