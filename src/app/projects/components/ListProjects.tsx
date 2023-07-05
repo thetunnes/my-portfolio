@@ -1,53 +1,19 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar } from 'lucide-react'
+import { IRepos } from '../page'
 
-interface IRepos {
-  id: number
-  name: string
-  html_url: string
-  owner: {
-    avatar_url: string
-    login: string
-    html_url: string
-  }
-  description: string | null
-  created_at: string
-  updated_at: string
+interface Props {
+  repos: IRepos[]
 }
 
-async function getRepositoriesGithub() {
-  const response = await fetch(
-    `https://api.github.com/users/thetunnes/repos/?sort=updated&type=public&per_page=10&page=1`,
-    {
-      method: 'GET',
-      next: {
-        revalidate: 120,
-      },
-    },
-  )
-  return response.json()
-}
-
-export async function ListProjects({
-  navigate,
-}: {
-  navigate: (url: string) => void
-}) {
-  const repos = await getRepositoriesGithub()
-
-  if (!repos) {
-    return (
-      <p className="text-center text-sm">Não foi possível listar projetos</p>
-    )
-  }
-
+export async function ListProjects({ repos }: Props) {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col justify-center space-y-3 px-3">
       {!!repos?.length &&
-        repos.map((repo: IRepos) => (
-          <button
-            onClick={() => navigate(repo.html_url)}
+        repos.map((repo) => (
+          <Link
+            href={repo.html_url}
             key={repo.id}
             className="flex flex-col items-start space-y-2 rounded-md border border-transparent px-2 py-3 transition-all duration-500 hover:border-zinc-600 dark:hover:border-gray-200"
           >
@@ -82,7 +48,7 @@ export async function ListProjects({
             <p className="ml-12 text-justify text-sm text-zinc-700 dark:text-gray-400">
               {repo.description}
             </p>
-          </button>
+          </Link>
         ))}
     </div>
   )
