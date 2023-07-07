@@ -27,6 +27,8 @@ export async function POST(req: Request, res: Response) {
     },
   })
 
+  console.log(user, email)
+
   if (!user || !user.password) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 })
   }

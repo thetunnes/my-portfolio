@@ -75,7 +75,7 @@ export function authOptions(): NextAuthOptions {
               password: credentials?.password,
             })
 
-            const user = data.user as IUser
+            const user = data?.user as IUser
 
             return user
           } catch (err: any) {
