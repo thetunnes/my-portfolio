@@ -1,9 +1,9 @@
 import { prisma } from '@/lib/prisma'
 import { compare } from 'bcrypt'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: NextRequest) {
   if (req.method !== 'POST') {
     return NextResponse.json(
       { message: 'Only POST requests allowed' },
@@ -26,8 +26,6 @@ export async function POST(req: Request, res: Response) {
       email,
     },
   })
-
-  console.log(user, email)
 
   if (!user || !user.password) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 })

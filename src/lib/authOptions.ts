@@ -5,7 +5,7 @@ import GithubProvider from 'next-auth/providers/github'
 import { v4 as uuidV4 } from 'uuid'
 import { NextAuthOptions } from 'next-auth'
 import { prisma } from './prisma'
-import { api } from './api'
+import { fetchWrapper } from './fetch'
 
 interface IUser {
   id: string
@@ -70,12 +70,18 @@ export function authOptions(): NextAuthOptions {
         async authorize(credentials) {
           // Inside `credentials` props has infos from login, e-mail/username and password.
           try {
-            const { data } = await api.post('/credentials/signin', {
-              email: credentials?.email,
-              password: credentials?.password,
-            })
+            const data = await fetchWrapper<{ user: IUser }>(
+              'credentials/signin',
+              {
+                body: JSON.stringify({
+                  email: credentials?.email,
+                  password: credentials?.password,
+                }),
+                method: 'POST',
+              },
+            )
 
-            const user = data?.user as IUser
+            const user = data.user
 
             return user
           } catch (err: any) {
