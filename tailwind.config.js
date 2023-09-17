@@ -1,92 +1,76 @@
-import plugin from 'tailwindcss/plugin'
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: 'var(--font-inter)',
-      },
-      colors: {
-        'color-instagram':
-          'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
-      },
+    container: {
+      center: true,
+      padding: '2rem',
       screens: {
-        small: { raw: '(max-width: 896px)' },
-        xsmall: { raw: '(max-width: 400px)' },
-        tall: { raw: '(min-width: 896px)' },
-        // => @media (min-height: 800px) { ... }
+        '2xl': '1400px',
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'color-instagram':
-          'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
+    },
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
       },
-      textShadow: {
-        sm: '0 1px 2px var(--tw-shadow-color)',
-        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
-        lg: '0 8px 16px var(--tw-shadow-color)',
-      },
-      transitionProperty: {
-        height: 'height',
-        spacing: 'margin, padding',
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        shine: {
-          '0%': {
-            backgroundPosition: 0,
-          },
-          '100%': {
-            backgroundPosition: 150,
-          },
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        pipe: {
-          '0%': {
-            opacity: 0,
-          },
-          '100%': {
-            opacity: 1,
-          },
-        },
-        shake: {
-          '0%': { transform: 'translate(2px, 1px) rotate(0deg)' },
-          '10%': { transform: 'translate(-1px, -2px) rotate(-1deg)' },
-          '20%': { transform: 'translate(-3px, 0px) rotate(1deg)' },
-          '30%': { transform: 'translate(0px, 2px) rotate(0deg)' },
-          '40%': { transform: 'translate(1px, -1px) rotate(1deg)' },
-          '50%': { transform: 'translate(-1px, 2px) rotate(-1deg)' },
-          '60%': { transform: 'translate(-3px, 1px) rotate(0deg)' },
-          '70%': { transform: 'translate(2px, 1px) rotate(-1deg)' },
-          '80%': { transform: 'translate(-1px, -1px) rotate(1deg)' },
-          '90%': { transform: 'translate(2px, 2px) rotate(0deg)' },
-          '100%': { transform: 'translate(1px, -2px) rotate(-1deg)' },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
         },
       },
       animation: {
-        textColor: 'shine 1.5s linear',
-        pipeAnimate: 'pipe 0.5s linear infinite',
-        shakeText: 'shake 3s linear infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'text-shadow': (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme('textShadow') },
-      )
-    }),
-  ],
+  plugins: [require('tailwindcss-animate')],
 }

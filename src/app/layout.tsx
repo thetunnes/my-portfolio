@@ -17,7 +17,7 @@ interface LayoutProps {
 export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={`${inter.variable} h-full font-sans`}>
+      <body className={`${inter.variable} h-full bg-slate-900 font-sans`}>
         <Providers>
           <Header />
           <main className="mt-20 h-full min-h-[calc(100vh-5rem)] p-6">

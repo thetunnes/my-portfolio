@@ -42,7 +42,7 @@ export function ListProjects({ repos }: Props) {
 
               <time className="flex items-center gap-1 text-xs text-zinc-600">
                 <Calendar size={16} />
-                {Intl.DateTimeFormat('pt-br').format(new Date(repo.created_at))}
+                {Intl.DateTimeFormat('pt-br').format(new Date(repo.updated_at))}
               </time>
             </section>
             <p className="ml-12 text-justify text-sm text-zinc-700 dark:text-gray-400">
