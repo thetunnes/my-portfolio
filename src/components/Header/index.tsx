@@ -24,12 +24,12 @@ export function Header() {
     <header className="fixed bottom-0 left-0 right-0 top-0 z-50 mx-6 flex h-20 items-center justify-between gap-5 border-b border-zinc-800 py-6 backdrop-blur dark:border-gray-200">
       <div className="flex items-center gap-3">
         <MenuMobile listMenus={listMenus} />
-        <AnimationText className="z-50 xsmall:hidden">
+        <AnimationText className="xsmall:hidden z-50">
           <Link href="/">The Dev Tunnes.</Link>
         </AnimationText>
       </div>
 
-      <nav className="absolute z-10 flex w-full flex-1 items-center justify-center gap-4 small:hidden">
+      <nav className="small:hidden absolute z-10 flex w-full flex-1 items-center justify-center gap-4">
         {listMenus.map((menu) => (
           <NavLink key={menu.text} text={menu.text} url={menu.url} />
         ))}

@@ -70,20 +70,24 @@ export function authOptions(): NextAuthOptions {
         async authorize(credentials) {
           // Inside `credentials` props has infos from login, e-mail/username and password.
           try {
-            const data = await fetchWrapper<{ user: IUser }>(
-              'credentials/signin',
-              {
-                body: JSON.stringify({
-                  email: credentials?.email,
-                  password: credentials?.password,
-                }),
-                method: 'POST',
-              },
-            )
+            console.log(credentials)
+            const response = await fetchWrapper<{
+              status: number
+              data: { user: IUser }
+            }>('credentials/signin', {
+              body: JSON.stringify({
+                email: credentials?.email,
+                password: credentials?.password,
+              }),
+              method: 'POST',
+            })
 
-            const user = data.user
+            console.log(response)
+            if (response.status !== 200) {
+              throw new Error('Problema ao logar')
+            }
 
-            return user
+            return response.data.user
           } catch (err: any) {
             console.log('Error returned', err.response.data.message)
             return null
@@ -91,17 +95,17 @@ export function authOptions(): NextAuthOptions {
         },
       }),
     ],
-    // logger: {
-    //   error(code, metadata) {
-    //     console.log({ type: 'inside error logger', code, metadata })
-    //   },
-    //   // warn(code) {
-    //   //   console.log({ type: 'inside warn logger', code })
-    //   // },
-    //   debug(code, metadata) {
-    //     console.log({ type: 'inside debug logger', code, metadata })
-    //   },
-    // },
+    logger: {
+      error(code, metadata) {
+        console.log({ type: 'inside error logger', code, metadata })
+      },
+      // warn(code) {
+      //   console.log({ type: 'inside warn logger', code })
+      // },
+      debug(code, metadata) {
+        console.log({ type: 'inside debug logger', code, metadata })
+      },
+    },
     callbacks: {
       async session({ session, user, token }) {
         if (token) {
@@ -117,7 +121,7 @@ export function authOptions(): NextAuthOptions {
         if (credentials) {
           // I need set cookie with session-token here
           const sessionToken = generateSessionToken()
-          const sessionMaxAge = 60 * 60 * 24 * 30 // 30Daysconst sessionMaxAge = 60 * 60 * 24 * 30; //30Days
+          const sessionMaxAge = 60 * 60 * 24 * 30 // 30 Days
           const sessionExpiry = fromDate(sessionMaxAge)
 
           const newSessionToken = await PrismaAdapter(prisma).createSession({
@@ -127,7 +131,18 @@ export function authOptions(): NextAuthOptions {
           })
           user.sessionToken = newSessionToken.sessionToken
         }
-        return true
+
+        const session = await prisma.session.findFirstOrThrow({
+          where: {
+            user_id: user.id,
+          },
+        })
+
+        if (session) {
+          return true
+        } else {
+          return '/'
+        }
       },
       async jwt({ token, user }) {
         if (user) {
@@ -135,6 +150,10 @@ export function authOptions(): NextAuthOptions {
         }
         return { ...token, ...user }
       },
+    },
+    pages: {
+      signIn: '/login',
+      error: '/',
     },
   }
 }

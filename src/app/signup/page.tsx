@@ -5,6 +5,7 @@ import { api } from '@/lib/api'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useToast } from '@/components/ui/use-toast'
 
 const schemaSignUp = z.object({
   // Criar um regex para validar username
@@ -16,9 +17,11 @@ const schemaSignUp = z.object({
 type SignUpData = z.infer<typeof schemaSignUp>
 
 export default function SignUp() {
-  const { register, handleSubmit } = useForm<SignUpData>({
+  const { toast } = useToast()
+  const { register, handleSubmit, reset, formState } = useForm<SignUpData>({
     resolver: zodResolver(schemaSignUp),
   })
+  const { isSubmitting } = formState
 
   async function handleSignUpUser(data: SignUpData) {
     try {
@@ -37,6 +40,10 @@ export default function SignUp() {
           },
         },
       )
+      toast({
+        title: 'Conta criada com sucesso!',
+      })
+      reset()
     } catch (err) {
       console.log(err)
     }
@@ -77,7 +84,13 @@ export default function SignUp() {
           placeholder="*********"
         />
 
-        <Button type="submit" color="green" size="md" className="my-2">
+        <Button
+          disabled={isSubmitting}
+          type="submit"
+          color="green"
+          size="md"
+          className="my-2"
+        >
           Cadastrar
         </Button>
       </form>

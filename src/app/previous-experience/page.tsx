@@ -44,7 +44,7 @@ const arrayCompanies = [
   },
   {
     companyName: 'MaxCred',
-    urlSite: 'https://app.maxcred.net/home',
+    urlSite: 'https://app.maxcred.net/auth/login',
     description: (
       <p className="w-full flex-1 text-justify text-sm leading-relaxed">
         Iniciando meus projetos <strong>freelancer</strong> em{' '}
@@ -91,7 +91,7 @@ const arrayCompanies = [
 export default function PreviousExperience() {
   return (
     <section className="flex w-full flex-col items-center justify-center px-6">
-      <h2 className="self-start text-xl font-semibold small:self-auto small:text-center">
+      <h2 className="small:self-auto small:text-center self-start text-xl font-semibold">
         Lista de projetos desenvolvidos profissionalmente
       </h2>
       {arrayCompanies.map((company) => (

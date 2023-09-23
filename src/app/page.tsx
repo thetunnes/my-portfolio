@@ -1,8 +1,18 @@
+import { ErrorKey, ErrorSignIn } from '@/components/ErrorSignIn'
 import { MainText } from '../components/MainTextAnimate'
 import FotoPerfil from './assets/foto-ccxp.jpg'
 import Image from 'next/image'
 
-export default function Home() {
+interface HomeProps {
+  searchParams: {
+    error: ErrorKey
+  }
+}
+
+export default function Home({ searchParams }: HomeProps) {
+  const { error } = searchParams
+
+  console.log(error)
   return (
     <section className="small:flex-col flex h-full w-full items-start justify-center gap-4">
       <div className="mx-auto flex w-full flex-1 flex-col items-center justify-center gap-1 ">
@@ -45,6 +55,8 @@ export default function Home() {
           , Design Patters e Responsive Web Design.
         </p>
       </div>
+
+      {error && <ErrorSignIn error={error} />}
     </section>
   )
 }

@@ -30,8 +30,6 @@ export function FormNewTechnology() {
     console.log(data)
   }
 
-  console.log(watch('iconTech'))
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

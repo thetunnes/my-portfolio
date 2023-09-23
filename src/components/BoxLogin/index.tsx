@@ -71,7 +71,11 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
             <User2Icon size={28} />
           )}
           <p className="text-xs font-semibold transition-colors duration-500 group-hover:text-green-600">
-            {session.user?.name?.split(' ')[0]}
+            {session.user?.name?.split(' ')[0].length <= 3
+              ? `${session.user?.name?.split(' ')[0]} ${
+                  session.user?.name?.split(' ')[1]
+                }`
+              : session.user?.name?.split(' ')[0]}
           </p>
         </button>
       ) : (
@@ -110,7 +114,7 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
             </>
           )}
 
-          {hasLoginWithEmail ? (
+          {!session && hasLoginWithEmail ? (
             <FormCredentials onPrevStage={() => setHasLoginWithEmail(false)} />
           ) : (
             !session && (
@@ -121,7 +125,7 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
                   onClick={() => selectTypeLogin('credentials')}
                 >
                   Login with{' '}
-                  <Mail className="transition-all duration-[400ms] ease-out group-hover/icon:translate-x-2" />
+                  <Mail className="duration-[400ms] transition-all ease-out group-hover/icon:translate-x-2" />
                 </Button>
                 <Button
                   size="sm"
@@ -129,7 +133,7 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
                   onClick={() => selectTypeLogin('github')}
                 >
                   Login with{' '}
-                  <Github className="transition-all duration-[400ms] ease-out group-hover/icon:translate-x-2" />
+                  <Github className="duration-[400ms] transition-all ease-out group-hover/icon:translate-x-2" />
                 </Button>
               </>
             )

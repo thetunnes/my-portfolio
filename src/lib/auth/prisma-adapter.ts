@@ -157,6 +157,7 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
     },
 
     async getSessionAndUser(sessionToken) {
+      console.log(sessionToken)
       const sessionDb = await prisma.session.findUnique({
         where: {
           session_token: sessionToken,
@@ -165,13 +166,12 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
           user: true,
         },
       })
-
+      console.log('getSession', sessionDb)
       if (!sessionDb) {
         return null
       }
 
       const { user, ...session } = sessionDb
-
       return {
         session: {
           id: session.id,

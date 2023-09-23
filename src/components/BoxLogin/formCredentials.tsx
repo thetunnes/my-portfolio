@@ -6,22 +6,38 @@ import Link from 'next/link'
 import TooltipIcons from '../TooltipIcons'
 import { signIn } from 'next-auth/react'
 import { FormEvent, useState } from 'react'
+import { useToast } from '../ui/use-toast'
+import { ErrorKey, errors } from '../ErrorSignIn'
 
 interface IFormProps {
   onPrevStage: () => void
 }
 
 export function FormCredentials({ onPrevStage }: IFormProps) {
+  const { toast } = useToast()
   const [dataLogin, setDataLogin] = useState({
     email: '',
     password: '',
   })
   async function handleSignIn(e: FormEvent) {
     e.preventDefault()
-    await signIn('credentials', {
+    const logged = await signIn('credentials', {
       email: dataLogin.email,
       password: dataLogin.password,
+      redirect: false,
     })
+
+    if (logged) {
+      const { error, ok } = logged
+
+      error &&
+        toast({
+          title: 'Testando erros ao logar',
+          description: errors[logged.error as ErrorKey],
+        })
+
+      ok && toast({ title: 'Login efetuado com sucesso!' })
+    }
   }
   return (
     <>

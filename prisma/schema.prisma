@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,13 +6,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-// model Technology {
-//   id         String @id @default(uuid())
-//   icon       String
-//   name       String @unique
-//   start_date String
-// }
 
 model User {
   id         String    @id @default(cuid())
@@ -44,8 +34,7 @@ model Account {
   scope               String?
   id_token            String?
   session_state       String?
-
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user                User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([provider, provider_account_id])
   @@map("accounts")
@@ -65,7 +54,7 @@ model Technology {
   id               String   @id @default(uuid())
   name             String
   start_date_study DateTime
-  icon             String   @db.Text
+  icon             String
   created_at       DateTime @default(now())
 
   @@map("technologies")

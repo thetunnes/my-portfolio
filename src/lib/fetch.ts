@@ -10,7 +10,8 @@ export async function fetchWrapper<T = unknown>(
 
   const result = await data.json()
 
-  console.log(result)
-
-  return result as T
+  return {
+    status: data.status,
+    data: result,
+  } as T
 }

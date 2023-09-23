@@ -14,7 +14,7 @@ export function AnimationText({
   return (
     <h2
       onClick={onClick}
-      className={`animateTitle bg-text flex cursor-pointer items-center gap-2 whitespace-nowrap bg-clip-text text-xl font-semibold hover:animate-textColor small:leading-6 ${
+      className={`animateTitle bg-text small:leading-6 flex cursor-pointer items-center gap-2 whitespace-nowrap bg-clip-text text-xl font-semibold hover:animate-textColor ${
         className && className
       }`}
     >
