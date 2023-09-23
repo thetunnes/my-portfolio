@@ -2,9 +2,9 @@
 import { useForm } from 'react-hook-form'
 import { InputFile } from '@/components/InputFile'
 import { InputText } from '@/components/InputText'
-import { useToasts } from '@/hooks/useToasts'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from '@/components/ui/use-toast'
 
 const formSchema = z.object({
   name: z.string(),
@@ -15,8 +15,6 @@ const formSchema = z.object({
 type IFormSchema = z.infer<typeof formSchema>
 
 export function TechnologyForm() {
-  const { notifySuccess } = useToasts()
-
   const {
     register,
     handleSubmit,
@@ -35,10 +33,11 @@ export function TechnologyForm() {
       // console.log(iconTechnology)
       // if (!iconTechnology) {
       //   console.log('test')
-      //   return notifyError('Um ícone deve ser adicionado')
       // }
 
-      notifySuccess('Adicionado com sucesso!')
+      toast({
+        title: 'Adicionado com sucesso!',
+      })
     } catch (err) {
       console.log(err)
     }
