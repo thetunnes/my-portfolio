@@ -8,7 +8,7 @@ export default async function AddTechnologies() {
 
   return (
     <div>
-      <h2 className="self-start text-xl font-semibold small:self-auto small:text-center">
+      <h2 className="small:self-auto small:text-center self-start text-xl font-semibold">
         Tecnologias em estudo
       </h2>
 

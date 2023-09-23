@@ -60,7 +60,7 @@ export function MainText() {
   return (
     <div className="w-max max-w-full">
       {finalText.length ? (
-        <p className="antialised after:content-[ ] after: font-mono text-3xl font-semibold leading-normal tracking-wider after:ml-1 after:inline-block after:h-8 after:w-[2px] after:animate-pipeAnimate after:bg-slate-950 after:dark:bg-slate-100 ">
+        <p className="antialised after:content-[ ] after: after:animate-pipeAnimate font-mono text-3xl font-semibold leading-normal tracking-wider after:ml-1 after:inline-block after:h-8 after:w-[2px] after:bg-slate-950 after:dark:bg-slate-100 ">
           {finalText}
         </p>
       ) : (
@@ -69,13 +69,13 @@ export function MainText() {
           {wordsRendered.map((word, i) => (
             <span
               key={word}
-              className=" mb-3 text-4xl tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500 text-shadow"
+              className=" text-shadow mb-3 text-4xl tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500"
             >
               {word}
               {i < words.length ? <b className="text-indigo-500">,</b> : null}
             </span>
           ))}
-          <span className="after:content-[ ] relative w-max text-4xl leading-normal tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500 text-shadow after:absolute after:bottom-0 after:right-0 after:top-0 after:ml-2 after:w-[2px] after:animate-pipeAnimate after:bg-slate-950 after:dark:bg-slate-100">
+          <span className="after:content-[ ] text-shadow after:animate-pipeAnimate relative w-max text-4xl leading-normal tracking-wider underline decoration-indigo-500 underline-offset-8 shadow-indigo-500 after:absolute after:bottom-0 after:right-0 after:top-0 after:ml-2 after:w-[2px] after:bg-slate-950 after:dark:bg-slate-100">
             {text}
             {text.includes(words[words.length - 1]) ? (
               <b className="text-indigo-500">.</b>

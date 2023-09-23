@@ -33,7 +33,7 @@ export default async function Projects() {
 
   return (
     <section className="space-y-3 px-6">
-      <h2 className="self-start text-xl font-semibold small:self-auto small:text-center">
+      <h2 className="small:self-auto small:text-center self-start text-xl font-semibold">
         Lista de projetos Github
       </h2>
 
