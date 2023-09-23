@@ -70,7 +70,6 @@ export function authOptions(): NextAuthOptions {
         async authorize(credentials) {
           // Inside `credentials` props has infos from login, e-mail/username and password.
           try {
-            console.log(credentials)
             const response = await fetchWrapper<{
               status: number
               data: { user: IUser }
@@ -82,7 +81,6 @@ export function authOptions(): NextAuthOptions {
               method: 'POST',
             })
 
-            console.log(response)
             if (response.status !== 200) {
               throw new Error('Problema ao logar')
             }
@@ -95,17 +93,20 @@ export function authOptions(): NextAuthOptions {
         },
       }),
     ],
-    logger: {
-      error(code, metadata) {
-        console.log({ type: 'inside error logger', code, metadata })
-      },
-      // warn(code) {
-      //   console.log({ type: 'inside warn logger', code })
-      // },
-      debug(code, metadata) {
-        console.log({ type: 'inside debug logger', code, metadata })
-      },
-    },
+    // logger: {
+    //   error(code, metadata) {
+    //     console.log({ type: 'inside error logger', code, metadata })
+    //   },
+    // warn(code) {
+    //   console.log({ type: 'inside warn logger', code })
+    // },
+    // debug(code, metadata) {
+    //   console.log({
+    //     type: 'inside debug logger',
+    //     code,
+    //   })
+    // },
+    // },
     callbacks: {
       async session({ session, user, token }) {
         if (token) {
@@ -132,17 +133,17 @@ export function authOptions(): NextAuthOptions {
           user.sessionToken = newSessionToken.sessionToken
         }
 
-        const session = await prisma.session.findFirstOrThrow({
-          where: {
-            user_id: user.id,
-          },
-        })
-
-        if (session) {
-          return true
-        } else {
-          return '/'
-        }
+        // const session = await prisma.session.findFirstOrThrow({
+        //   where: {
+        //     user_id: user.id,
+        //   },
+        // })
+        // if (session) {
+        //   return true
+        // } else {
+        //   return '/'
+        // }
+        return true
       },
       async jwt({ token, user }) {
         if (user) {
@@ -152,7 +153,7 @@ export function authOptions(): NextAuthOptions {
       },
     },
     pages: {
-      signIn: '/login',
+      // signIn: '/login',
       error: '/',
     },
   }

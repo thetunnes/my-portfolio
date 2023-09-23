@@ -15,7 +15,7 @@ export const BoxLogin = forwardRef<HTMLDivElement>(function BoxLogin(
   const [isOpenTab, setIsOpenTab] = useState(false)
   const [hasLoginWithEmail, setHasLoginWithEmail] = useState(false)
 
-  // console.log('SESSIONFRONT', session)
+  console.log('SESSIONFRONT', session)
   function selectTypeLogin(type: string) {
     switch (type) {
       case 'credentials':

@@ -4,6 +4,7 @@ import { Adapter } from 'next-auth/adapters'
 export default function PrismaAdapter(prisma: PrismaClient): Adapter {
   return {
     async createUser(user) {
+      console.log(user)
       let prismaUser = await prisma.user.findUnique({
         where: {
           email: user.email,
@@ -19,8 +20,19 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
             auth: user.auth,
           },
         })
+      } else {
+        prismaUser = await prisma.user.update({
+          where: {
+            id: prismaUser.id,
+          },
+          data: {
+            name: user.name,
+            email: user.email,
+            avatar_url: user.image ?? '',
+            auth: user.auth,
+          },
+        })
       }
-
       return {
         id: prismaUser.id,
         name: prismaUser.name,
@@ -157,7 +169,6 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
     },
 
     async getSessionAndUser(sessionToken) {
-      console.log(sessionToken)
       const sessionDb = await prisma.session.findUnique({
         where: {
           session_token: sessionToken,
@@ -166,7 +177,6 @@ export default function PrismaAdapter(prisma: PrismaClient): Adapter {
           user: true,
         },
       })
-      console.log('getSession', sessionDb)
       if (!sessionDb) {
         return null
       }

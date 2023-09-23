@@ -12,7 +12,6 @@ interface HomeProps {
 export default function Home({ searchParams }: HomeProps) {
   const { error } = searchParams
 
-  console.log(error)
   return (
     <section className="small:flex-col flex h-full w-full items-start justify-center gap-4">
       <div className="mx-auto flex w-full flex-1 flex-col items-center justify-center gap-1 ">
