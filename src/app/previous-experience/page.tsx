@@ -91,7 +91,7 @@ const arrayCompanies = [
 export default function PreviousExperience() {
   return (
     <section className="flex w-full flex-col items-center justify-center px-6">
-      <h2 className="small:self-auto small:text-center self-start text-xl font-semibold">
+      <h2 className="self-start text-xl font-semibold small:self-auto small:text-center">
         Lista de projetos desenvolvidos profissionalmente
       </h2>
       {arrayCompanies.map((company) => (

@@ -13,7 +13,7 @@ export default function Home({ searchParams }: HomeProps) {
   const { error } = searchParams
 
   return (
-    <section className="small:flex-col flex h-full w-full items-start justify-center gap-4">
+    <section className="flex h-full w-full items-start justify-center gap-4 small:flex-col">
       <div className="mx-auto flex w-full flex-1 flex-col items-center justify-center gap-1 ">
         <Image
           alt="Foto perfil"
@@ -28,7 +28,7 @@ export default function Home({ searchParams }: HomeProps) {
         </span>
       </div>
 
-      <div className="small:w-full flex h-full w-1/2 flex-1 flex-col justify-center gap-4">
+      <div className="flex h-full w-1/2 flex-1 flex-col justify-center gap-4 small:w-full">
         <MainText />
         <p className="text-justify text-lg">
           Olá mundo! Eu me chamo Cauê, tenho 23 anos e a alguns anos me aventuro

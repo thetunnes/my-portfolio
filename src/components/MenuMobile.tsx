@@ -20,10 +20,10 @@ export function MenuMobile({ listMenus }: IMenuMobileProps) {
   }, [listMenus])
 
   return (
-    <div className="tall:hidden relative" id="Menu-Mobile">
+    <div className="relative tall:hidden" id="Menu-Mobile">
       <button
         id="nav-icon2"
-        className="small:block group relative hidden h-5 w-6 rotate-0 cursor-pointer transition"
+        className="group relative hidden h-5 w-6 rotate-0 cursor-pointer transition small:block"
         onClick={() => setIsOpen((bool) => !bool)}
       >
         <span

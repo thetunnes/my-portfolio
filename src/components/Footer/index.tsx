@@ -20,7 +20,7 @@ export function Footer() {
 
       <div className="flex flex-col items-center justify-center">
         <p className="text-center">Web site para portfólio.</p>
-        <p className="small:w-auto w-[540px] text-center text-xs">
+        <p className="w-[540px] text-center text-xs small:w-auto">
           Junto dessa aplicação, foi desenvolvida uma simples documentação e
           para mostrar todo o meu trabalho,{' '}
           <a
