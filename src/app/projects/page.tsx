@@ -16,7 +16,7 @@ export interface IRepos {
 
 async function getRepositoriesGithub(page: string): Promise<IRepos[] | Error> {
   const response = await fetch(
-    `https://api.github.com/users/thetunnes/repos?sort=updated&type=public&per_page=10&page=1`,
+    `https://api.github.com/users/thetunnes/repos?sort=updated&type=public&per_page=10&page=${page}`,
   )
 
   if (!response.ok) {

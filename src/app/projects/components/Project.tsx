@@ -9,10 +9,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 interface Props extends ComponentProps<'a'> {
   repo: IRepos
-  lastPosition: boolean
+  position: boolean
 }
 
-export function Project({ repo, isLast }: Props) {
+export function Project({ repo, position }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -22,8 +22,8 @@ export function Project({ repo, isLast }: Props) {
     const url = new URLSearchParams(Array.from(searchParams.entries()))
 
     url.set('page', text)
-
     const search = url.toString()
+    console.log(search)
     const query = search ? `?${search}` : ''
 
     router.push(`${pathname}${query}`)
@@ -31,18 +31,17 @@ export function Project({ repo, isLast }: Props) {
 
   useEffect(() => {
     if (!projectRef?.current) return
-
     const observer = new IntersectionObserver(([entry]) => {
-      console.log('Teste', isLast, entry.target)
-      if (isLast && entry.isIntersecting) {
+      if (position && entry.isIntersecting) {
         const page = searchParams.get('page')
-        onQueryParam(page ? page + 1 : '0')
+        // const scroll = entry.target.scrollHeight
+        onQueryParam(page ? (Number(page) + 1).toString() : '2')
         observer.unobserve(entry.target)
       }
     })
 
     observer.observe(projectRef.current)
-  }, [isLast])
+  }, [position])
 
   return (
     <Link
