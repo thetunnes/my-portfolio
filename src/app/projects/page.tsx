@@ -14,7 +14,7 @@ export interface IRepos {
   updated_at: string
 }
 
-async function getRepositoriesGithub(): Promise<IRepos[] | Error> {
+async function getRepositoriesGithub(page: string): Promise<IRepos[] | Error> {
   const response = await fetch(
     `https://api.github.com/users/thetunnes/repos?sort=updated&type=public&per_page=10&page=1`,
   )
@@ -24,8 +24,15 @@ async function getRepositoriesGithub(): Promise<IRepos[] | Error> {
   }
   return response.json()
 }
-export default async function Projects() {
-  const repos = await getRepositoriesGithub()
+interface Props {
+  searchParams: {
+    page: string
+  }
+}
+
+export default async function Projects({ searchParams }: Props) {
+  const { page } = searchParams
+  const repos = await getRepositoriesGithub(page ?? '0')
 
   if (repos instanceof Error) {
     return <p>ERROR</p>
@@ -33,7 +40,7 @@ export default async function Projects() {
 
   return (
     <section className="space-y-3 px-6">
-      <h2 className="small:self-auto small:text-center self-start text-xl font-semibold">
+      <h2 className="self-start text-xl font-semibold small:self-auto small:text-center">
         Lista de projetos Github
       </h2>
 
